@@ -12,16 +12,18 @@ public class Main {
     private static final FoodItems[] foodItems = FoodItems.values();
     private static final Tools[] tools = Tools.values();
     private static final ToolUses[] toolUses = ToolUses.values();
+    private static final CollectionCategory[] collectibleCate = CollectionCategory.values();
+    private static final CollectionMaterialType[] collectibleMate = CollectionMaterialType.values();
+    private static final PotionItems[] potions = PotionItems.values();
+    private static final PotionColor[] potionColors = PotionColor.values();
 
     public static void main(String[] args) {
 
 	// write your code here
     // make a scanner object
     Scanner scan = new Scanner(System.in);
+        //to store, use List
     List<Item> items = new ArrayList<>();
-
-    //to store, use List
-    // List<Item> items = new ArrayList<>();
 
     // store enum to an array
     // FoodItems[] foodItems = FoodItems.values();
@@ -31,12 +33,12 @@ public class Main {
     // ToolUses[] toolUses = ToolUses.values();
 
     // CollectionCategory and CollectionMaterialType for Collectibles Class
-    CollectionCategory[] collectibleCate = CollectionCategory.values();
-    CollectionMaterialType[] collectibleMate = CollectionMaterialType.values();
+    // CollectionCategory[] collectibleCate = CollectionCategory.values();
+    // CollectionMaterialType[] collectibleMate = CollectionMaterialType.values();
 
     // PotionItems and PotionColor
-    PotionItems[] potions = PotionItems.values();
-    PotionColor[] potionColors = PotionColor.values();
+    // PotionItems[] potions = PotionItems.values();
+    // PotionColor[] potionColors = PotionColor.values();
 
     System.out.print("How many items do you want: ");
 
@@ -45,7 +47,7 @@ public class Main {
     int itemCnt = Integer.parseInt(scan.nextLine());
 
         for(int i = 0; i < itemCnt; i++) {
-        // bound value is not included, so 0 or 1
+        // bound value is not included, so 0 or 3
             int type = ran.nextInt(4);
             switch (type) {
                 case 0 -> {
@@ -54,30 +56,11 @@ public class Main {
                 }
                 case 1 -> items.add(genTool());
 
-                case 2 -> {
-                    int collectibleIndex = ran.nextInt(collectibleCate.length);
-                    String collectibleName = collectibleCate[collectibleIndex].toString();
-                    float collectiblePrice = ran.nextFloat(300);
-                    int collectibleQty = ran.nextInt(10);
-                    String materialType = collectibleMate[collectibleIndex].toString();
-                    Collectibles tempCollectible = new Collectibles(collectibleName, collectiblePrice, collectibleQty, materialType);
-                    items.add(tempCollectible);
-                }
+                case 2 -> items.add(genCollectible());
 
-                case 3 -> {
-                    int potionIndex = ran.nextInt(potions.length);
-                    String potionName = potions[potionIndex].toString();
-                    float potionPrice = ran.nextFloat(1000);
-                    int potionQty = ran.nextInt(100);
-                    String potionColor = potionColors[potionIndex].toString();
-                    Potion tempPotion = new Potion(potionName, potionPrice, potionQty, potionColor);
-                    items.add(tempPotion);
+                case 3 -> items.add(genPotion());
 
-
-
-
-                }
-
+                default -> throw new IllegalStateException("Unexpected value: " + type);
             }
 
         }
@@ -119,5 +102,25 @@ public class Main {
         //Tool tmpTool =
         //System.out.println(tmp);
         return new Tool(toolName, toolPrice, toolQty, use);
+    }
+
+    public static Collectibles genCollectible() {
+
+        int collectibleIndex = ran.nextInt(collectibleCate.length);
+        String collectibleName = collectibleCate[collectibleIndex].toString();
+        float collectiblePrice = ran.nextFloat(300);
+        int collectibleQty = ran.nextInt(10);
+        String materialType = collectibleMate[collectibleIndex].toString();
+        return new Collectibles(collectibleName, collectiblePrice, collectibleQty, materialType);
+    }
+
+    public static Potion genPotion() {
+
+        int potionIndex = ran.nextInt(potions.length);
+        String potionName = potions[potionIndex].toString();
+        float potionPrice = ran.nextFloat(1000);
+        int potionQty = ran.nextInt(100);
+        String potionColor = potionColors[potionIndex].toString();
+        return new Potion(potionName, potionPrice, potionQty, potionColor);
     }
 }
