@@ -6,22 +6,29 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Main {
+    // added for MultiThreadSort
+    // final means that we are not going to change once it is run
+    private static final Random ran = new Random();
+    private static final FoodItems[] foodItems = FoodItems.values();
+    private static final Tools[] tools = Tools.values();
+    private static final ToolUses[] toolUses = ToolUses.values();
 
     public static void main(String[] args) {
+
 	// write your code here
     // make a scanner object
     Scanner scan = new Scanner(System.in);
-    Random ran = new Random();
-
-    //to store, use List
     List<Item> items = new ArrayList<>();
 
+    //to store, use List
+    // List<Item> items = new ArrayList<>();
+
     // store enum to an array
-    FoodItems[] foodItems = FoodItems.values();
+    // FoodItems[] foodItems = FoodItems.values();
 
     // Tools enum and ToolUses
-    Tools[] tools = Tools.values();
-    ToolUses[] toolUses = ToolUses.values();
+    // Tools[] tools = Tools.values();
+    // ToolUses[] toolUses = ToolUses.values();
 
     // CollectionCategory and CollectionMaterialType for Collectibles Class
     CollectionCategory[] collectibleCate = CollectionCategory.values();
@@ -42,27 +49,10 @@ public class Main {
             int type = ran.nextInt(4);
             switch (type) {
                 case 0 -> {
-                    int foodIndex = ran.nextInt(foodItems.length);
-                    String foodName = foodItems[foodIndex].toString();
-                    float foodPrice = ran.nextFloat(10);
-                    int foodQty = ran.nextInt(30);
-                    int foodUses = ran.nextInt(6);
-                    float healthGain = ran.nextFloat(20);
-                    Food tmpFood = new Food(foodName, foodPrice, foodQty, foodUses, healthGain);
-                    //System.out.println(tmpFood);
-                    // we are going to store instead of print it out
-                    items.add(tmpFood);
+                    // genFood() will return and returned item will be added
+                    items.add(genFood());
                 }
-                case 1 -> {
-                    int toolIndex = ran.nextInt(tools.length);
-                    String toolName = tools[toolIndex].toString();
-                    float toolPrice = ran.nextFloat(200);
-                    int toolQty = ran.nextInt(15);
-                    String use = toolUses[toolIndex].toString();
-                    Tool tempTool = new Tool(toolName, toolPrice, toolQty, use);
-                    //System.out.println(tmp);
-                    items.add(tempTool);
-                }
+                case 1 -> items.add(genTool());
 
                 case 2 -> {
                     int collectibleIndex = ran.nextInt(collectibleCate.length);
@@ -103,5 +93,31 @@ public class Main {
     //System.out.println(a);
     //System.out.println(b);
     //System.out.println(c);
+    }
+
+    public static Food genFood() {
+
+        int foodIndex = ran.nextInt(foodItems.length);
+        String foodName = foodItems[foodIndex].toString();
+        float foodPrice = ran.nextFloat(10);
+        int foodQty = ran.nextInt(30);
+        int foodUses = ran.nextInt(6);
+        float healthGain = ran.nextFloat(20);
+        //Food tmpFood =
+        //System.out.println(tmpFood);
+        // we are going to store instead of print it out
+        return new Food(foodName, foodPrice, foodQty, foodUses, healthGain);
+    }
+
+    public static Tool genTool() {
+
+        int toolIndex = ran.nextInt(tools.length);
+        String toolName = tools[toolIndex].toString();
+        float toolPrice = ran.nextFloat(200);
+        int toolQty = ran.nextInt(15);
+        String use = toolUses[toolIndex].toString();
+        //Tool tmpTool =
+        //System.out.println(tmp);
+        return new Tool(toolName, toolPrice, toolQty, use);
     }
 }
