@@ -19,6 +19,7 @@ public class MergeSort extends Thread{
         System.out.println("Merge started");
         int i = 0; // Current index of item_first_half
         int j = 0; // Current index of item_second_half
+
         int k = 0; // Current index of sortedItems
 
         while(i < item_first_half.length && j < item_second_half.length){
