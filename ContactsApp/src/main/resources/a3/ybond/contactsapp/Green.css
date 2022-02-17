@@ -1,0 +1,44 @@
+
+// menu bar AND(,) drop-downs from menu bar
+.menu-bar, .context-menu {
+    -fx-background-color: #49F241;
+}
+
+// all labels that BELONG to the menu
+.menu .label {
+    -fx-text-fill: #E280E6;
+}
+
+.menu:hover, .menu:showing, .menu-item:focused {
+    -fx-background-color: #654321;
+}
+
+.vbox, .list-view {
+    -fx-background-color: #46995B;
+}
+
+.list-cell: filled: selected: focused, list-cell: filled: selected {
+    -fx-background-color: #e5c9e7;
+    -fx-text-fill: #506f8d;
+}
+
+.list-cell: odd {
+    -fx-background-color: #fff;
+}
+
+.list-cell: even {
+    -fx-background-color: #92F5A6;
+}
+
+.grid-pane {
+    -fx-background-color: #49E656;
+}
+
+.grid-pane .label {
+    -fx-text-fill: #654321;
+}
+
+// to get rid of the white color around the button image
+.button {
+    -fx-background-color: #49E656;
+}

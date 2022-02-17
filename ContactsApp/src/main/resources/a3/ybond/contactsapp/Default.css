@@ -8,3 +8,9 @@
     -fx-padding: 10px;
     -fx-font-family: "monospace";
 }
+
+.menu .label {
+
+    -fx-font-weight: bold;
+
+}

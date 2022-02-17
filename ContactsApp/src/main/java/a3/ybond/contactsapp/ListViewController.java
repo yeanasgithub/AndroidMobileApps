@@ -2,16 +2,20 @@ package a3.ybond.contactsapp;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import org.json.JSONObject;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Objects;
 import java.util.Scanner;
 
 //json is like XML, but lighter weight version
@@ -37,6 +41,10 @@ public class ListViewController {
     GridPane newContact;
     @FXML
     TextField txtFirstName, txtLastName, txtPhone;
+    @FXML
+    VBox vBoxMain;
+    @FXML
+    MenuItem btnThemeDefault, btnThemeBlue, btnThemeGreen;
 
     // before loading the contact.json
     // sort the names by surname
@@ -106,6 +114,33 @@ public class ListViewController {
             }
     }
 
+
+
+    @FXML
+    // Theme menu
+    protected void onThemeChange(final ActionEvent event){
+        // requiring three CSS files
+        String defaultCSS = Objects.requireNonNull(getClass().getResource("Default.css")).toString();
+        String blueCSS = Objects.requireNonNull(getClass().getResource("Blue.css")).toString();
+        String greenCSS = Objects.requireNonNull(getClass().getResource("Green.css")).toString();
+
+        vBoxMain.getScene().getStylesheets().removeAll(defaultCSS, blueCSS, greenCSS);
+        // we need to see which button has been pressed
+
+        Object source = event.getSource();
+        if (btnThemeDefault.equals(source)) {
+            vBoxMain.getScene().getStylesheets().add(defaultCSS);
+        }
+
+        if (btnThemeBlue.equals(source)) {
+            vBoxMain.getScene().getStylesheets().add(blueCSS);
+        }
+
+        if (btnThemeGreen.equals(source)) {
+            vBoxMain.getScene().getStylesheets().add(greenCSS);
+        }
+
+    }
     // New under Contacts menu
     @FXML
     protected void onNewContact(){
