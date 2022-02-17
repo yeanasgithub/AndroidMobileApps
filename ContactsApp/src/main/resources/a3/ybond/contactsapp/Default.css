@@ -1,0 +1,10 @@
+//Label in Scene Builder
+.label{
+    -fx-padding: 10px;
+}
+
+//ListView in Scene Builder
+.list-view{
+    -fx-padding: 10px;
+    -fx-font-family: "monospace";
+}
