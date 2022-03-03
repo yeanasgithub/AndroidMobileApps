@@ -30,6 +30,7 @@ public class ListViewController {
     // To show contactsList (fx:id in list-view.fxml) inside the initialize() below
     // we need to bind our contactsList to an observableList
     // an array that fires an event every time it is changed
+    // observable means that it listens to changes and has callbacks
     ObservableList<Contact> contacts = FXCollections.observableArrayList();
 
 
@@ -51,6 +52,9 @@ public class ListViewController {
     ContactComparator comparator = new ContactComparator();
 
     // life cycle methods that are available to scenes
+    // constructor is called firsts then initialize() is called
+    // With this app, life cycle refers to the one of scene
+    // onHidden is life cycle function to the stage rather than scene
     @FXML
     public void initialize() {
 
