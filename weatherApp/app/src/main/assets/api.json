@@ -1,0 +1,8 @@
+{
+  "apikey": "3d8dfc8fb99589bb0a406ee923bad6dc",
+  "geocodingURL": "https://api.openweathermap.org/geo/1.0/direct?q=%s&appid=%s",
+  "weatherURL": "https://api.openweathermap.org/data/2.5/weather?lat=%s&lon=%s&units=imperial&appid=%s",
+  "weatherIconURL": "https://openweathermap.org/img/wn/%s@4x.png"
+
+
+}
