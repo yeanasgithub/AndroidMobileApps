@@ -37,7 +37,7 @@ public class LoginController {
             // if our userName is valid, it creates socket to our local server that is running
             // and the socket is passed to Client method via client object
             // then, use that client object to send the message that we have connected to
-            Socket socket = new Socket("localhost",3390);
+            Socket socket = new Socket("odin.cs.csub.edu",3390);
             Client client = new Client(socket, txtUserName.getText());
             client.sendMessage(txtUserName.getText());
 
