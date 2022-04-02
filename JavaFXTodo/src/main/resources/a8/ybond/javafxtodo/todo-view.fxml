@@ -4,26 +4,36 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="a8.ybond.javafxtodo.TodoController">
+<VBox fx:id="vBoxMain" prefHeight="400.0" prefWidth="600.0" stylesheets="@Theme.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="a8.ybond.javafxtodo.TodoController">
    <children>
-      <TabPane fx:id="tabLists" maxHeight="30.0" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="NEVER">
+      <TabPane fx:id="tabLists" maxHeight="47.0" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="NEVER">
         <tabs>
-          <Tab onSelectionChanged="#onTabChanged" text="Home">
+          <Tab onSelectionChanged="#onTabChanged" text="Study">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
             </content>
           </Tab>
-          <Tab onSelectionChanged="#onTabChanged" text="School">
+          <Tab onSelectionChanged="#onTabChanged" text="Car">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
             </content>
+          </Tab>
+          <Tab onSelectionChanged="#onTabChanged" text="Meals">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              </content>
+          </Tab>
+          <Tab onSelectionChanged="#onTabChanged" text="Trips">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              </content>
           </Tab>
         </tabs>
       </TabPane>
       <ListView fx:id="listItems" onMouseClicked="#onItemClicked" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
       <HBox spacing="10.0">
          <children>
-            <TextField fx:id="txtItem" onAction="#onAddItem" HBox.hgrow="ALWAYS" />
+            <TextField fx:id="txtItem" onAction="#onAddItem" prefHeight="47.0" prefWidth="481.0" HBox.hgrow="ALWAYS" />
             <Button fx:id="btnAdd" mnemonicParsing="false" onAction="#onAddItem" text="Add" />
          </children>
          <padding>
