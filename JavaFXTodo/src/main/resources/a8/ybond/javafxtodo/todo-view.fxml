@@ -8,12 +8,12 @@
    <children>
       <TabPane fx:id="tabLists" maxHeight="47.0" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="NEVER">
         <tabs>
-          <Tab onSelectionChanged="#onTabChanged" text="Study">
+          <Tab onSelectionChanged="#onTabChanged" text="Home">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
             </content>
           </Tab>
-          <Tab onSelectionChanged="#onTabChanged" text="Car">
+          <Tab onSelectionChanged="#onTabChanged" text="School">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
             </content>
@@ -21,6 +21,11 @@
           <Tab onSelectionChanged="#onTabChanged" text="Meals">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              </content>
+          </Tab>
+          <Tab onSelectionChanged="#onTabChanged" text="Car">
+              <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
               </content>
           </Tab>
           <Tab onSelectionChanged="#onTabChanged" text="Trips">

@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "853752197851",
+    "firebase_url": "https://javafxtodo-c03ab-default-rtdb.firebaseio.com",
+    "project_id": "javafxtodo-c03ab",
+    "storage_bucket": "javafxtodo-c03ab.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:853752197851:android:c8f3d8d26b0f11fc9f12fe",
+        "android_client_info": {
+          "package_name": "a9.ybond.mobiletodo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "853752197851-25rt69uftjjl0hg1431emplr4f7samaa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAKBvfOEVgulyFdnq_NWtgL5xxS5KK2do4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "853752197851-25rt69uftjjl0hg1431emplr4f7samaa.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
