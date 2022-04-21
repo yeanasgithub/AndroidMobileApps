@@ -1,0 +1,27 @@
+package a10.ybond.mindmaster;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+
+public class MainActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+    }
+
+    // 1. onlick Play button tagged in activity_main.xml
+    // @02:25 to navigate to our next activity
+    // surface view is used when updating our screen at the velocity of 30 times per second
+    public void onPlayClicked(View view)
+    {
+
+        // 20. We will make a new Intent here in line @ 13:19
+        startActivity(new Intent(MainActivity.this,  GameActivity.class));
+    }
+
+}
