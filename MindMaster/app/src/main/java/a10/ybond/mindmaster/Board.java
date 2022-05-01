@@ -1,12 +1,12 @@
 package a10.ybond.mindmaster;
 
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Point;
-import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,6 +41,20 @@ public class Board {
     // 74. Making computer solution lists @ 53:59
     private final List<Integer> solutionList = new ArrayList<>();
 
+    // 77. @ 02:04 in part 3
+    // To store the feedback pegs, we need a list container
+    private final List<Peg> resultPegs = new ArrayList<>();
+
+    // 83. To go ending game, we will reference this boolean variable
+    private boolean win = false;
+
+    // 84. @ 29:10 in part 3, after modifying the constructor below,
+    private final GameActivity gameActivity;
+
+    // 89. To instantiate hidingSolution class @ 42:54 in part 3
+    private HidingSolution hidingSolution;
+
+
     // 28. Bitmap to draw the board itself
     private Bitmap background;
 
@@ -50,8 +64,9 @@ public class Board {
     // and to place the pegs correctly
     // Point for screenSize and
     // Resources file to get our image drawn in the background
-    public Board(Point screenSize, Resources resources)
+    public Board(Point screenSize, Resources resources, GameActivity gameActivity)
     {
+        this.gameActivity = gameActivity; // 84. @29:40 in part 3
         // 29. Bitmap from our resource to bring in
         background = BitmapFactory.decodeResource(resources, R.drawable.board);
         // 30. To contain all the images from Download folder @ 25:45
@@ -108,6 +123,13 @@ public class Board {
         // 69. Creating our point button
         playButton = new PlayButton(tmp, Math.round(pegRadius * 0.9f));
 
+        // 90. @ 44: 57, after this we need to also draw this in draw()
+        Point tmpCoverPos = new Point();
+        tmpCoverPos.x = pegList.get(pegList.size() - 4).getPos().x - pegRadius;
+        tmpCoverPos.y = pegList.get(pegList.size() - 4).getPos().y - pegRadius;
+        hidingSolution = new HidingSolution(tmpCoverPos, pegRadius * 11,  pegRadius * 2);
+
+
 
     }
 
@@ -129,7 +151,24 @@ public class Board {
                 // 51. Now we can make a peg @56:55
                 Peg tmp = new Peg(0, pegRadius, new Point(pegX, pegY));
                 pegList.add(tmp);
+
+                // 78. @02:22 every fourth peg is generated, the feedback pegs are created?
+                if(col == 3)
+                {
+                    int resultPegRadius = Math.round(pegRadius * 0.4f);
+                    resultPegs.add(new Peg(0,
+                            resultPegRadius, new Point(tmp.getPos().x + pegRadius *3, Math.round(tmp.getPos().y - resultPegRadius * 1.2f))));
+                    resultPegs.add(new Peg(0,
+                            resultPegRadius, new Point(tmp.getPos().x + pegRadius *4, Math.round(tmp.getPos().y - resultPegRadius * 1.2f))));
+                    resultPegs.add(new Peg(0,
+                            resultPegRadius, new Point(tmp.getPos().x + pegRadius *3, Math.round(tmp.getPos().y + resultPegRadius * 1.2f))));
+                    resultPegs.add(new Peg(0,
+                            resultPegRadius, new Point(tmp.getPos().x + pegRadius *4, Math.round(tmp.getPos().y + resultPegRadius * 1.2f))));
+
+                }
             }
+
+
         }
 
         // 52. @1:00:00
@@ -154,13 +193,20 @@ public class Board {
         canvas.drawBitmap(background, boardXPos, 0, paint);
 
         // 52. After making pegs, we need to draw them
-        for(Peg p : pegList)
-        {
-            p.draw(canvas);
-        }
+        for(Peg p : pegList)  {  p.draw(canvas);  }
+        // 79. We need to draw the result pegs to have them shown @ 05:32 in part 3
+        for(Peg p: resultPegs)  {  p.draw(canvas);  }
 
         // 69. We need to also draw our play button @ 39:30 in part 2
         playButton.draw(canvas);
+
+        // 91. drawing hidden solution @ 45:43 in part 3
+        hidingSolution.draw(canvas);
+
+        // 93. @ 49:44 hidingSolution is drawn every frame, and eventually offScreen becomes true
+        // then the game is ended
+        if (hidingSolution.offScreen) {  goEndingGame();  }
+
 
     }
 
@@ -188,7 +234,7 @@ public class Board {
         // 71. @46:33
         // Board.java handles all the clicking
         // isPlayButton is getting wired with Board
-
+        // This is where we control result pegs to show only after the play button is clicked!!!
         if (playButton.isPlayButtonClicked(point))
         {
             // currentRow++;
@@ -212,8 +258,96 @@ public class Board {
             rowList.add(pegList.get(currentRow * 4 + i).selectedPaint);
         }
 
-        // advance current row
-        advanceCurrentRow();
+        // copy the solution list to temp list
+        List<Integer> tmpSolution = new ArrayList<>();
+        tmpSolution.addAll(solutionList);
+
+        // 80. We are looking for the exact matches first, then, for color matches second
+        // @ 09:01 in part 3
+        // we need a increasing reference to count how many exactly matched pegs in a row list
+        int emptyPeg = 0;
+
+        int exactMatches = 0;
+        // we are decrementing i to prevent index out of bound case from happening
+        // since we are removing a matched peg from rowList
+        for (int i = 3; i >= 0; i--)
+        {
+            if(rowList.get(i) == tmpSolution.get(i))
+            {
+                // a green result peg indicates an exact match
+                resultPegs.get(currentRow * 4 + emptyPeg).setColor(3);
+                emptyPeg++;
+                exactMatches++;
+                rowList.remove(i);
+                tmpSolution.remove(i);
+            }
+        }
+
+        // 81. @15:43 in part 3, We are looking for color matches second
+        for (int i = rowList.size() - 1; i >= 0; i--)
+        {
+            for (int j = tmpSolution.size() - 1; j >= 0; j--)
+            {
+                if (rowList.get(i) == tmpSolution.get(j))
+                {
+                    // a yellow result peg indicates just a color match
+                    resultPegs.get(currentRow * 4 + emptyPeg).setColor(4);
+                    emptyPeg++; // yellow result pegs show followed by the green result pegs
+                                // since the variable emptyPeg might have been increased above already
+                    rowList.remove(i);
+                    tmpSolution.remove(j);
+                    break;
+
+                    // 82. @ 21:50 in part 3, we are adding a new empty activity to show
+                    // if the game is over  - - - > activity_end_game.xml
+
+                }
+            }
+        }
+
+
+        // 82. Check win condition
+        if(exactMatches == 4)
+        {
+            win = true;
+            // 92. @ 48:05
+            hidingSolution.show = true;
+            // goEndingGame(); @ 48:21 in part 3 so that we can see the solution
+        }
+
+        else if (currentRow == 8) // check lose condition
+        {
+
+            hidingSolution.show = true;
+
+            //commenting this out @ 48:21 in part 3 so that we can see the solution
+            //goEndingGame();
+
+        }
+
+        else {  advanceCurrentRow();  }  // advance current row
+
+    }
+
+    // 83. Ending game @ 25:47 in part 3
+    private void goEndingGame()
+    {
+        // this is not going to work, we need to go to GameView that is passed to GameActivity.java
+        // @ 27:52 in part 3
+        // Intent intent = new Intent(this, EndGameActivity.class
+        Intent intent = new Intent(gameActivity, EndGameActivity.class);
+
+        // 85. @31:00  showing the screen of ending activity
+        intent .putExtra("win", win);
+        gameActivity.startActivity(intent);
+
+        // 88. @ 35:11 in part 3 the current activity should be finished as well
+        // so it can bring back to the very first page
+        gameActivity.finish();
+
+
+
+
     }
 
     private void advanceCurrentRow()

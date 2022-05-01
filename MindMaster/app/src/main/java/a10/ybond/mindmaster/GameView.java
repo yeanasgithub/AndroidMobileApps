@@ -31,11 +31,14 @@ public class GameView extends SurfaceView implements Runnable{
     // 4. this is going to be a new thread, so it implements a runnable
     // in order to have all the drawing take place on the new thread
 
+    // 83. @ 28:09 we are passing in the context of game activity
+
     public GameView(Context context, Point screenSize) {
         super(context);
         // 36. we are using the Board object here
         // Board requires a screenSize which can be obtained from GameActivity
-        board = new Board(screenSize, getResources());
+        // board = new Board(screenSize, getResources());
+        board = new Board(screenSize, getResources(), (GameActivity)context);
 
         // 37. Inside GameActivity.java we need a screenSize inside onCreate function as well
     }
