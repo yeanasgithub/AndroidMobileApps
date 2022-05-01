@@ -29,12 +29,12 @@ public class Peg {
         }
 
         // setting paint colors
-        paints.get(0).setARGB(255,50,50,50); // Dark Grey
-        paints.get(1).setARGB(255,255,0,0);  // Red
-        paints.get(2).setARGB(255,0,0,255);  // Blue
-        paints.get(3).setARGB(255,0,255,0);  // Green
-        paints.get(4).setARGB(255,255,255,0); // Yellow
-        paints.get(5).setARGB(255,255,165,0); // Orange
+        paints.get(0).setARGB(255,50,50,50); // Dark Grey -> 0
+        paints.get(1).setARGB(255,255,0,0);  // Red -> 1
+        paints.get(2).setARGB(255,0,0,255);  // Blue -> 2
+        paints.get(3).setARGB(255,0,255,0);  // Green -> 3
+        paints.get(4).setARGB(255,255,255,0); // Yellow -> 4
+        paints.get(5).setARGB(255,255,165,0); // Orange -> 5
 
         this.radius = radius;
         this.pos = pos;
@@ -68,6 +68,13 @@ public class Peg {
         // Mod is used
         selectedPaint = (selectedPaint + 1) % paints.size();
     }
+
+    // 67. @37:43 in part 2
+    // inside of Peg class, we need a constructor to get our position
+    public Point getPos() {   return pos;    }
+
+
+
 
 
 }

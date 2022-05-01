@@ -1,6 +1,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.MindMaster" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <!-- // 56. Getting rid of the top action bar @ part 2 04:00 -->
+    <style name="Theme.MindMaster" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/purple_500</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
@@ -12,9 +13,6 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
-        <!-- 41. in order to fit the image to the device's screen size @ 38:24
-        -->
-        <item name="windowNoTitle">true</item>
-        <item name="windowActionBar">false</item>
+
     </style>
 </resources>

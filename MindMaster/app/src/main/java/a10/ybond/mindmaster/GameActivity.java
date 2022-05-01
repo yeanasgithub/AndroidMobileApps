@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.Point;
 import android.os.Bundle;
+import android.view.WindowManager;
 
 public class GameActivity extends AppCompatActivity {
 
@@ -21,6 +22,9 @@ public class GameActivity extends AppCompatActivity {
 
         // 17. GameView takes context of this
         gameView = new GameView(this, screenSize);
+
+        // 56. Getting rid of the top action bar @04:20 in part 2
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         // 23. To make GameView shown
         setContentView(gameView);
     }
@@ -45,7 +49,7 @@ public class GameActivity extends AppCompatActivity {
     {
         super.onResume();
         // 18. this will make a separate thread @ 13:00
-        gameView.resume();;
+        gameView.resume();
     }
 
 }
