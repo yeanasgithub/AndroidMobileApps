@@ -23,6 +23,7 @@ public class EndGameActivity extends AppCompatActivity {
 
         // 87. @ 33:26 Handling play again button
         Button btn = findViewById(R.id.btnPlayAgain);
+
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

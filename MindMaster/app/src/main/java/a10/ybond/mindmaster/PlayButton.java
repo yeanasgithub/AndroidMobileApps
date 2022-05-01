@@ -52,7 +52,6 @@ public class PlayButton {
                 point.y >= pos.y - height /2 && point.y <= pos.y + height / 2);
     }
 
-    public void moveDown(int rowVerticalSpace) {
-        pos.y += rowVerticalSpace;
-    }
+    public void moveDown(int rowVerticalSpace) {   pos.y += rowVerticalSpace;    }
+
 }

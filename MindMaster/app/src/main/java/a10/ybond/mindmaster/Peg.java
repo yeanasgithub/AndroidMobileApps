@@ -71,7 +71,7 @@ public class Peg {
 
     // 67. @37:43 in part 2
     // inside of Peg class, we need a constructor to get our position
-    public Point getPos() {   return pos;    }
+    public Point getPos() {    return pos;    }
 
 
 

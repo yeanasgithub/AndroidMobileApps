@@ -69,6 +69,7 @@ public class GameView extends SurfaceView implements Runnable{
         // 25. inside draw (), we are using x and y value that is updated here
         // y += 4;
 
+
     }
 
     private void draw()
@@ -102,7 +103,7 @@ public class GameView extends SurfaceView implements Runnable{
 
     public void pause()
     {
-        // 14. setting the boolean isPlaying's value according to the method
+        // 14. setting the boolean isPlayingnow's value according to the method
         isPlaying = false;
 
         // 10. pausing the thread
@@ -110,9 +111,8 @@ public class GameView extends SurfaceView implements Runnable{
         // which will pause eventually
         try {
             thread.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
         }
+        catch (InterruptedException e) {    e.printStackTrace();        }
 
     }
 

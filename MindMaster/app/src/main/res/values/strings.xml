@@ -2,7 +2,7 @@
     <string name="app_name">MindMaster</string>
 
     <string name="play">Play</string>
-    <string name="gameover">Game Over</string>
-    <string name="playagain">Play Again</string>
+    <string name="gameOver">Game Over</string>
+    <string name="playAgain">Play Again</string>
 
 </resources>

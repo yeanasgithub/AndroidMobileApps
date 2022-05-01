@@ -205,7 +205,7 @@ public class Board {
 
         // 93. @ 49:44 hidingSolution is drawn every frame, and eventually offScreen becomes true
         // then the game is ended
-        if (hidingSolution.offScreen) {  goEndingGame();  }
+        if (hidingSolution.off_Screen) {  goEndingGame();  }
 
 
     }
@@ -286,16 +286,16 @@ public class Board {
         // 81. @15:43 in part 3, We are looking for color matches second
         for (int i = rowList.size() - 1; i >= 0; i--)
         {
-            for (int j = tmpSolution.size() - 1; j >= 0; j--)
+            for (int k = tmpSolution.size() - 1; k >= 0; k--)
             {
-                if (rowList.get(i) == tmpSolution.get(j))
+                if (rowList.get(i) == tmpSolution.get(k))
                 {
                     // a yellow result peg indicates just a color match
                     resultPegs.get(currentRow * 4 + emptyPeg).setColor(4);
                     emptyPeg++; // yellow result pegs show followed by the green result pegs
                                 // since the variable emptyPeg might have been increased above already
                     rowList.remove(i);
-                    tmpSolution.remove(j);
+                    tmpSolution.remove(k);
                     break;
 
                     // 82. @ 21:50 in part 3, we are adding a new empty activity to show
