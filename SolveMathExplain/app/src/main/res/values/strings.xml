@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">SolveMathExplain</string>
+    <string name="start">Start</string>
+    <string name="choice_buttons1">Choice_1</string>
+    <string name="choice_buttons2">Choice_2</string>
+    <string name="choice_buttons3">Choice_3</string>
+    <string name="choice_buttons4">Choice_4</string>
+    <string name="start_recording">1 - > Start Recording</string>
+    <string name="stop_recording">2 - > Stop Recording</string>
+    <string name="start_playing">3 - > Start Playing Recorded Explanation</string>
+    <string name="stop_playing">4 - > Finish Listening to Recorded Explanation</string>
+    <string name="recording_quality">High Quality</string>
+
+
+    <string name="recording_loop_guideline">You can record your explanation for the answer
+        you selected for bonus points. After playing recorded explanation, you
+        MUST press the last green button to be able to record from the second time to record
+        and onward. </string>
+
+
+
+
+</resources>
